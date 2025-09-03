@@ -7,7 +7,11 @@
 # Packages to install
   
   mongoose - ```npm i mongoose```
+  
   express - ```npm i express``` 
+  
   bcryptjs - ```npm i bcryptjs```
+  
   jsonwebtoken - ```npm i jsonwebtoken```
+  
   dotenv - ```npm i dotenv```
