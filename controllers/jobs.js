@@ -27,20 +27,24 @@ const createJob = async (req, res) => {
 };
 const updateJob = async (req, res) => {
   const {
-    body: {company,position},
+    body: { company, position },
     user: { userId },
     params: { id: jobId },
   } = req;
 
-  if(company === ' ' || position === ' '){
-    throw new BadRequest('Company and position cannot be empty')
+  if (company === " " || position === " ") {
+    throw new BadRequest("Company and position cannot be empty");
   }
-  const job = await Job.findByIdAndUpdate({
-    _id: jobId,
-    createdBy: userId
-  },req.body, {new:true, runValidators:true}) 
-// new:true => Return the updated document (not the old one)
-// runValidators:true => Re-check the validation rules (like required fields, length limits) when updating.
+  const job = await Job.findByIdAndUpdate(
+    {
+      _id: jobId,
+      createdBy: userId,
+    },
+    req.body,
+    { new: true, runValidators: true }
+  );
+  // new:true => Return the updated document (not the old one)
+  // runValidators:true => Re-check the validation rules (like required fields, length limits) when updating.
   if (!job) {
     throw new NotFoundError(`No job with id ${jobId}`);
   }
@@ -53,13 +57,13 @@ const deleteJob = async (req, res) => {
   } = req;
 
   const job = await Job.findByIdAndDelete({
-    _id:jobId,
-    createdBy:userId
-  })
+    _id: jobId,
+    createdBy: userId,
+  });
   if (!job) {
     throw new NotFoundError(`No job with id ${jobId}`);
   }
-  res.status(200).send()
+  res.status(200).send();
 };
 
 module.exports = {
